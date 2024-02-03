@@ -28,10 +28,14 @@ const App = () => {
  
   function ShowOutput(index=0,id=1){
     let v=Uservalue.data;
-      if(id===2){
+    console.log("yeah")
+    if(v===""){
+        alert("please enter some message");
+    }
+     else if(id===2){
           SetUserArray((prevData) => {
           const newArray = [...prevData];
-          newArray.splice(index + 1, 0, {id:3,userImg:personelImage , userData:v, likes: 0, editComment:true,replyComment:true });
+          newArray.splice(index+1, 0, {id:3,userImg:personelImage , userData:v, likes: 0, editComment:true,replyComment:true });
           console.log(newArray);
           return newArray;
       });
@@ -59,6 +63,9 @@ const App = () => {
       newData[index] = { ...newData[index], likes: newData[index].likes + 1 };
       return newData;
     });
+  }
+  function increaseCount(){
+    c=c+1;
   }
   function DecreaseLikes(index){
 
@@ -121,7 +128,7 @@ const App = () => {
     })
   }
 
-  
+  let c=0;
   return (
     <>
     <div ref={classRef} className='psudoClass'>
@@ -148,9 +155,10 @@ const App = () => {
 
           { v.id!=3 ?(
           <div className='CoverComent'><img src={v.userImg} className='myImage' alt="" />
-          <span>{jsonData.comments[index].user.username} </span><button className='replyComment'   onClick={()=>handleClick(index)}><img src={reply}  alt="" /> Reply</button>
-          <textarea  className='OldCommentsData' value={jsonData.comments[index].content}>
+          <span>{jsonData.comments[c].user.username} </span><button className='replyComment'   onClick={()=>handleClick(index)}><img src={reply}  alt="" /> Reply</button>
+          <textarea  className='OldCommentsData' value={jsonData.comments[c].content}>
           </textarea>
+          {increaseCount()}
           </div>
           )
           
