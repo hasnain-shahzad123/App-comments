@@ -27,7 +27,7 @@ const App = () => {
   ]);
  
   function ShowOutput(index=0,id=1){
-    let v=Uservalue.data;
+    let v=Uservalue.data.trim();
     console.log("yeah")
     if(v===""){
         alert("please enter some message");
